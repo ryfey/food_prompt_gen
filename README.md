@@ -37,6 +37,7 @@ gaya komposisi [Gaya Komposisi], kesan [Kata Kunci Emosi].
    ```bash
    git clone [https://github.com/ryfey/food_prompt_gen.git]
 2. Buka file index.html langsung di browser (tidak butuh server).
+3. gunakan langsung melalui : https://ryfey.github.io/food_prompt_gen/
 
 Pilih nilai dari dropdown → klik Generate Prompt.
 
