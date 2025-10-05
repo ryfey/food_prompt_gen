@@ -67,8 +67,7 @@ Silakan digunakan, dimodifikasi, dan dikembangkan lebih lanjut.
 
 👨‍💻 Dibuat oleh
 
-Mohammad Safii
-📍 SMP Negeri 2 Merauke
+Rifai Syaban
 ✨ For creative AI food photography prompt exploration.
 
 🌐 Rencana Pengembangan (Optional)
