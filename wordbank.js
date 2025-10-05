@@ -1,67 +1,67 @@
-// Word banks for each slot
+// Word banks Bahasa Indonesia untuk setiap slot
 
 window.wordBanks = {
   mainSubject: [
-    "sushi platter", "chocolate lava cake", "iced coffee", "fruit tart", "roast chicken",
-    "bubble tea", "avocado toast", "ramen bowl", "grilled steak", "matcha parfait"
+    "nasi goreng", "sate ayam", "bakso", "es cendol", "rendang", "gado-gado", "soto ayam", "mie ayam", "pempek", "lumpia",
+    "martabak manis", "rawon", "ayam geprek", "tahu isi", "tempe mendoan", "bubur ayam", "kerupuk", "kue lapis", "kolak pisang", "jus alpukat"
   ],
   actionState: [
-    "elegantly plated", "dripping with sauce", "midair falling", "freshly sliced",
-    "smoking hot", "melting", "glazed", "overflowing", "frosted", "stacked high"
+    "tersaji rapi", "berlumur saus", "sedang diangkat", "baru dimasak", "mengeluarkan asap", "setengah terbuka", "menggoda selera", "terpotong rapi", "mengalirkan kuah", "tumpah sedikit",
+    "bertabur bawang goreng", "disiram kecap", "ditusuk sate", "meleleh", "berlapis-lapis", "digulung", "dipanggang sempurna", "mengkilap", "dihias cabai", "mengambang di kuah"
   ],
   servingSurface: [
-    "ceramic plate", "rustic wooden board", "crystal glass bowl", "black slate",
-    "woven basket", "marble slab", "porcelain dish", "bamboo tray", "metal pan", "paper wrap"
+    "piring keramik", "mangkuk kayu", "daun pisang", "wadah anyaman", "nampan bambu", "gelas kaca", "piring melamin", "tempat stainless", "piring rotan", "mangkuk porselen",
+    "piring putih polos", "mangkuk tanah liat", "wadah tradisional", "wadah kaca", "piring batik", "dulang kayu", "piring kuningan", "wadah plastik", "piring ukiran", "dulang logam"
   ],
   dynamicEffect: [
-    "splashing milk", "falling crumbs", "swirling steam", "dripping chocolate",
-    "floating herbs", "rising bubbles", "spinning ice", "flying powder sugar", "melting butter", "raining sprinkles", ""
+    "asap mengepul", "kuah menetes", "saus terpercik", "serpihan kerupuk jatuh", "bumbu bertebaran", "es batu berkilau", "gula cair mengalir", "butiran kelapa jatuh", "cokelat meleleh", "ramuan herbal melayang",
+    "taburan wijen turun", "potongan buah meluncur", "kecap menetes", "lada berhamburan", "udara hangat naik", "embun di gelas", "tepung beterbangan", "minyak berkilau", "serutan keju jatuh", "buih soda naik"
   ],
   cameraAngle: [
-    "top-down", "45° angle", "extreme close-up", "eye-level", "side profile",
-    "low angle", "overhead", "macro", "diagonal", "dynamic tilt"
+    "atas langsung", "sudut 45°", "close-up ekstrem", "sejajar mata", "profil samping", "angle rendah", "overhead", "makro", "diagonal", "tilt dinamis",
+    "bird-eye", "worm-eye", "sudut tiga perempat", "sudut miring", "angle simetris", "off-center", "sudut vertikal", "high angle", "low angle", "frontal"
   ],
   propElements: [
-    "fresh herbs", "silver cutlery", "linen napkin", "ice cubes", "flower petals",
-    "whole spices", "wooden chopsticks", "citrus slices", "mini flags", "handwritten menu"
+    "daun seledri", "sendok perak", "serbet kain", "es batu", "bunga melati", "rempah utuh", "sumpit kayu", "irisan jeruk nipis", "bendera mini", "menu tulisan tangan",
+    "potongan cabai", "kerupuk kecil", "daun pandan", "garpu kayu", "serpihan bawang goreng", "potongan tomat", "irisan telur", "potongan timun", "piring kecil sambal", "potongan bawang merah"
   ],
   lightingType: [
-    "soft diffused side lighting", "dramatic backlight", "moody low-key", "natural sunlight",
-    "bright studio", "warm candlelight", "cool ambient", "spotlight", "shadow play", "color gels"
+    "pencahayaan alami", "backlight dramatis", "low-key gelap", "cahaya studio terang", "cahaya lilin hangat", "ambien sejuk", "pencahayaan samping lembut", "spotlight", "bayangan bermain", "filter warna",
+    "pencahayaan pagi", "cahaya senja", "cahaya redup", "cahaya jendela", "cahaya lampu gantung", "pencahayaan softbox", "cahaya neon", "cahaya lampu dapur", "cahaya siluet", "cahaya reflektif"
   ],
   backdropType: [
-    "dark textured backdrop", "bright pastel surface", "marble slab", "wood grain table",
-    "concrete texture", "vintage fabric", "neutral gradient", "patterned tile", "canvas", "outdoor scene"
+    "latar gelap tekstur", "permukaan pastel cerah", "meja kayu", "kain vintage", "latar marmer", "latar polos putih", "gradient netral", "ubin bermotif", "latar luar ruangan", "kertas coklat kraft",
+    "latar rustic", "permukaan batu", "taplak batik", "permukaan granit", "latar daun tropis", "latar anyaman bambu", "latar kain linen", "permukaan kaca", "latar keramik", "latar foto blur"
   ],
   moodAtmosphere: [
-    "cozy and warm", "vibrant and energetic", "luxurious and elegant", "fresh and lively",
-    "rustic charm", "romantic", "minimalist clean", "urban chic", "festive", "mysterious"
+    "hangat dan nyaman", "ceria dan bersemangat", "mewah dan elegan", "segar dan hidup", "nuansa tradisional", "romantis", "minimalis bersih", "urban modern", "meriah", "misterius",
+    "santai", "kasual", "nostalgik", "eksklusif", "ramai pesta", "slow living", "piknik", "reuni keluarga", "nuansa tropis", "nuansa pedesaan"
   ],
   colorPalette: [
-    "earthy tones", "vivid brights", "pastel hues", "monochrome", "golden highlights",
-    "cool blues", "warm reds", "natural greens", "neutral greys", "tropical colors"
+    "warna bumi", "warna cerah", "nuansa pastel", "monokrom", "aksen emas", "biru sejuk", "merah hangat", "hijau alami", "abu netral", "warna tropis",
+    "warna tradisional", "palet coklat", "palet kuning", "palet hijau daun", "palet oranye", "palet ungu", "palet biru laut", "palet merah muda", "palet hitam putih", "palet natural"
   ],
   compositionStyle: [
-    "minimalist centered", "editorial flatlay", "commercial advertising", "asymmetrical balance",
-    "dynamic diagonal", "rule of thirds", "close crop", "layered depth", "negative space", "pattern repetition"
+    "minimalis terpusat", "flatlay editorial", "iklan komersial", "asimetri seimbang", "diagonal dinamis", "rule of thirds", "crop dekat", "depth bertingkat", "ruang negatif", "pola berulang",
+    "komposisi zigzag", "frame dalam frame", "komposisi spiral", "komposisi grid", "komposisi overlay", "komposisi berlapis", "komposisi melingkar", "komposisi piramida", "komposisi simetris", "komposisi diagonal"
   ],
   emotionKeywords: [
-    "mouth-watering", "inviting", "indulgent", "refreshing", "comforting",
-    "celebratory", "bold", "delicate", "tempting", "serene"
+    "menggugah selera", "mengundang", "lezat maksimal", "menyegarkan", "menghangatkan hati", "meriah", "berani", "lembut", "menggiurkan", "tenang",
+    "nostalgis", "menenangkan", "memanjakan", "mengasyikkan", "menenangkan jiwa", "menyejukkan", "menggetarkan", "menghibur", "membahagiakan", "memikat"
   ]
 };
 
 window.slotGuide = [
-  {slot: "[Main Subject]", desc: "Main food/drink you want featured", ex: "sushi platter, chocolate lava cake, iced coffee"},
-  {slot: "[Action/State]", desc: "What’s happening with the food", ex: "elegantly plated, dripping with sauce, midair falling"},
-  {slot: "[Serving Surface]", desc: "Dish or surface where food is placed", ex: "ceramic plate, rustic wooden board, crystal glass bowl"},
-  {slot: "[Dynamic Effect]", desc: "Optional movement or effect", ex: "splashing milk, falling crumbs, swirling steam"},
-  {slot: "[Camera Angle]", desc: "How the camera views the food", ex: "top-down, 45° angle, extreme close-up, eye-level"},
-  {slot: "[Prop Elements]", desc: "Decorative or contextual items around food", ex: "fresh herbs, silver cutlery, linen napkin, ice cubes"},
-  {slot: "[Lighting Type]", desc: "Style and direction of lighting", ex: "soft diffused side lighting, dramatic backlight, moody low-key"},
-  {slot: "[Backdrop Type]", desc: "Background look", ex: "dark textured backdrop, bright pastel surface, marble slab"},
-  {slot: "[Mood/Atmosphere Style]", desc: "Emotional tone of the shot", ex: "cozy and warm, vibrant and energetic, luxurious and elegant"},
-  {slot: "[Color Palette]", desc: "Palette warna", ex: "earthy tones, vivid brights, pastel hues, monochrome"},
-  {slot: "[Composition Style]", desc: "Framing and layout style", ex: "minimalist centered, editorial flatlay, commercial advertising"},
-  {slot: "[Emotion/Mood Keywords]", desc: "Final touch of emotional language", ex: "mouth-watering, inviting, indulgent, refreshing"}
+  {slot: "[Main Subject]", desc: "Makanan/minuman utama yang ingin ditampilkan", ex: "nasi goreng, sate ayam, es cendol"},
+  {slot: "[Action/State]", desc: "Apa yang terjadi pada makanan", ex: "tersaji rapi, berlumur saus, sedang diangkat"},
+  {slot: "[Serving Surface]", desc: "Wadah atau permukaan tempat makanan diletakkan", ex: "piring keramik, daun pisang, mangkuk kayu"},
+  {slot: "[Dynamic Effect]", desc: "Efek gerak atau visual opsional", ex: "asap mengepul, kuah menetes, butiran kelapa jatuh"},
+  {slot: "[Camera Angle]", desc: "Sudut pandang kamera terhadap makanan", ex: "atas langsung, sudut 45°, close-up ekstrem"},
+  {slot: "[Prop Elements]", desc: "Properti dekoratif di sekitar makanan", ex: "daun seledri, sendok perak, bunga melati"},
+  {slot: "[Lighting Type]", desc: "Gaya dan arah pencahayaan", ex: "pencahayaan alami, backlight dramatis, low-key gelap"},
+  {slot: "[Backdrop Type]", desc: "Karakter latar belakang", ex: "latar gelap tekstur, permukaan pastel cerah, meja kayu"},
+  {slot: "[Mood/Atmosphere Style]", desc: "Nuansa atau mood foto", ex: "hangat dan nyaman, ceria dan bersemangat, mewah dan elegan"},
+  {slot: "[Color Palette]", desc: "Nuansa warna", ex: "warna bumi, nuansa pastel, aksen emas"},
+  {slot: "[Composition Style]", desc: "Gaya komposisi dan framing", ex: "minimalis terpusat, flatlay editorial, iklan komersial"},
+  {slot: "[Emotion/Mood Keywords]", desc: "Kesan emosi akhir", ex: "menggugah selera, menyegarkan, memanjakan"}
 ];
