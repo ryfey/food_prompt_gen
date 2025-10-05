@@ -29,10 +29,10 @@ gaya komposisi [Gaya Komposisi], kesan [Kata Kunci Emosi].
 
 ## 🧩 **Struktur Folder**
  /analyze-food-photo-prompt/
-│
-├── index.html # Tampilan utama
-├── app.js # Logika utama (generate prompt, copy, event handling)
-└── wordbank.js # Kumpulan kata / Word Bank untuk setiap slot
+ │
+ ├── index.html # Tampilan utama
+ ├── app.js # Logika utama (generate prompt, copy, event handling)
+ └── wordbank.js # Kumpulan kata / Word Bank untuk setiap slot
 
 
 ---
