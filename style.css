@@ -1,0 +1,15 @@
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f8fa; margin: 0; }
+.container { max-width: 700px; margin: 30px auto; background: #fff; border-radius: 10px; padding: 2em; box-shadow: 0 2px 16px rgba(0,0,0,.07);}
+h1 { font-size: 2em; margin-bottom: 0.8em;}
+.slot-group { margin-bottom: 1em; }
+label { font-weight: 500; display: block; margin-bottom: .3em; }
+select, textarea, button { font-size: 1em; padding: .5em; border-radius: 6px; border: 1px solid #c0c0c0;}
+select { width: 100%; }
+textarea { width: 100%; resize: vertical; margin-top: 1em;}
+button { background: #2e7d32; color: #fff; border: none; cursor:pointer; margin-top: 1em;}
+button:hover { background: #388e3c;}
+details { margin-top: 1em; }
+table { width: 100%; border-collapse: collapse; margin-top: .5em;}
+td, th { border: 1px solid #e0e0e0; padding: .5em;}
+th { background: #f0f0f0;}
+ul { margin:0; padding-left: 1.3em;}
