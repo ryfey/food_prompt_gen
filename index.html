@@ -12,56 +12,70 @@
     <form id="promptForm">
       <div class="slot-group">
         <label>Main Subject:</label>
-        <select id="mainSubject"></select>
+        <input id="mainSubject" list="mainSubjectList" />
+        <datalist id="mainSubjectList"></datalist>
       </div>
       <div class="slot-group">
         <label>Action/State:</label>
-        <select id="actionState"></select>
+        <input id="actionState" list="actionStateList" />
+        <datalist id="actionStateList"></datalist>
       </div>
       <div class="slot-group">
         <label>Serving Surface:</label>
-        <select id="servingSurface"></select>
+        <input id="servingSurface" list="servingSurfaceList" />
+        <datalist id="servingSurfaceList"></datalist>
       </div>
       <div class="slot-group">
         <label>Dynamic Effect:</label>
-        <select id="dynamicEffect"></select>
+        <input id="dynamicEffect" list="dynamicEffectList" />
+        <datalist id="dynamicEffectList"></datalist>
       </div>
       <div class="slot-group">
         <label>Camera Angle:</label>
-        <select id="cameraAngle"></select>
+        <input id="cameraAngle" list="cameraAngleList" />
+        <datalist id="cameraAngleList"></datalist>
       </div>
       <div class="slot-group">
         <label>Prop Elements:</label>
-        <select id="propElements"></select>
+        <input id="propElements" list="propElementsList" />
+        <datalist id="propElementsList"></datalist>
       </div>
       <div class="slot-group">
         <label>Lighting Type:</label>
-        <select id="lightingType"></select>
+        <input id="lightingType" list="lightingTypeList" />
+        <datalist id="lightingTypeList"></datalist>
       </div>
       <div class="slot-group">
         <label>Backdrop Type:</label>
-        <select id="backdropType"></select>
+        <input id="backdropType" list="backdropTypeList" />
+        <datalist id="backdropTypeList"></datalist>
       </div>
       <div class="slot-group">
         <label>Mood/Atmosphere Style:</label>
-        <select id="moodAtmosphere"></select>
+        <input id="moodAtmosphere" list="moodAtmosphereList" />
+        <datalist id="moodAtmosphereList"></datalist>
       </div>
       <div class="slot-group">
         <label>Color Palette:</label>
-        <select id="colorPalette"></select>
+        <input id="colorPalette" list="colorPaletteList" />
+        <datalist id="colorPaletteList"></datalist>
       </div>
       <div class="slot-group">
         <label>Composition Style:</label>
-        <select id="compositionStyle"></select>
+        <input id="compositionStyle" list="compositionStyleList" />
+        <datalist id="compositionStyleList"></datalist>
       </div>
       <div class="slot-group">
         <label>Emotion/Mood Keywords:</label>
-        <select id="emotionKeywords"></select>
+        <input id="emotionKeywords" list="emotionKeywordsList" />
+        <datalist id="emotionKeywordsList"></datalist>
       </div>
       <button type="submit">Generate Prompt</button>
+      <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;">Random Prompt</button>
     </form>
     <h2>Prompt Output</h2>
-    <textarea id="promptOutput" rows="6" readonly></textarea>
+    <textarea id="promptOutput" rows="6"></textarea>
+    <div style="font-size:0.95em;color:#888;">* Prompt dapat diedit manual, atau klik Generate/Random untuk overwrite.</div>
     <details>
       <summary>Slot Guide</summary>
       <div id="slotGuide"></div>
