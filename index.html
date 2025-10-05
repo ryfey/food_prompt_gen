@@ -1,95 +1,148 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Analyze Food Photo & Prompt Generator</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Analyze Food Photo & Prompt Generator</h1>
+
     <form id="promptForm">
+      <!-- Combo inputs (input + datalist) -->
       <div class="slot-group">
-        <label>Main Subject:</label>
-        <input id="mainSubject" list="mainSubjectList" />
+        <label for="mainSubject">Main Subject:</label>
+        <input id="mainSubject" list="mainSubjectList" autocomplete="off" />
         <datalist id="mainSubjectList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Action/State:</label>
-        <input id="actionState" list="actionStateList" />
+        <label for="actionState">Action/State:</label>
+        <input id="actionState" list="actionStateList" autocomplete="off" />
         <datalist id="actionStateList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Serving Surface:</label>
-        <input id="servingSurface" list="servingSurfaceList" />
+        <label for="servingSurface">Serving Surface:</label>
+        <input id="servingSurface" list="servingSurfaceList" autocomplete="off" />
         <datalist id="servingSurfaceList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Dynamic Effect:</label>
-        <input id="dynamicEffect" list="dynamicEffectList" />
+        <label for="dynamicEffect">Dynamic Effect:</label>
+        <input id="dynamicEffect" list="dynamicEffectList" autocomplete="off" />
         <datalist id="dynamicEffectList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Camera Angle:</label>
-        <input id="cameraAngle" list="cameraAngleList" />
+        <label for="cameraAngle">Camera Angle:</label>
+        <input id="cameraAngle" list="cameraAngleList" autocomplete="off" />
         <datalist id="cameraAngleList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Prop Elements:</label>
-        <input id="propElements" list="propElementsList" />
+        <label for="propElements">Prop Elements:</label>
+        <input id="propElements" list="propElementsList" autocomplete="off" />
         <datalist id="propElementsList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Lighting Type:</label>
-        <input id="lightingType" list="lightingTypeList" />
+        <label for="lightingType">Lighting Type:</label>
+        <input id="lightingType" list="lightingTypeList" autocomplete="off" />
         <datalist id="lightingTypeList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Backdrop Type:</label>
-        <input id="backdropType" list="backdropTypeList" />
+        <label for="backdropType">Backdrop Type:</label>
+        <input id="backdropType" list="backdropTypeList" autocomplete="off" />
         <datalist id="backdropTypeList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Mood/Atmosphere Style:</label>
-        <input id="moodAtmosphere" list="moodAtmosphereList" />
+        <label for="moodAtmosphere">Mood/Atmosphere Style:</label>
+        <input id="moodAtmosphere" list="moodAtmosphereList" autocomplete="off" />
         <datalist id="moodAtmosphereList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Color Palette:</label>
-        <input id="colorPalette" list="colorPaletteList" />
+        <label for="colorPalette">Color Palette:</label>
+        <input id="colorPalette" list="colorPaletteList" autocomplete="off" />
         <datalist id="colorPaletteList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Composition Style:</label>
-        <input id="compositionStyle" list="compositionStyleList" />
+        <label for="compositionStyle">Composition Style:</label>
+        <input id="compositionStyle" list="compositionStyleList" autocomplete="off" />
         <datalist id="compositionStyleList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label>Emotion/Mood Keywords:</label>
-        <input id="emotionKeywords" list="emotionKeywordsList" />
+        <label for="emotionKeywords">Emotion/Mood Keywords:</label>
+        <input id="emotionKeywords" list="emotionKeywordsList" autocomplete="off" />
         <datalist id="emotionKeywordsList"></datalist>
       </div>
-      <button type="submit">Generate Prompt</button>
-      <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;">Random Prompt</button>
+
+      <div style="margin-top:0.6em;">
+        <button type="submit">Generate Prompt</button>
+        <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;color:#fff;border:none;padding:.5em .8em;border-radius:6px;">Random Prompt</button>
+      </div>
     </form>
+
     <h2>Prompt Output</h2>
     <textarea id="promptOutput" rows="6"></textarea>
-    <div style="font-size:0.95em;color:#888;">* Prompt dapat diedit manual, atau klik Generate/Random untuk overwrite.</div>
-    <details>
-      <summary>Slot Guide</summary>
-      <div id="slotGuide"></div>
+    <div style="font-size:0.95em;color:#888;margin-bottom:0.8em;">* Prompt dapat diedit manual, atau klik Generate/Random untuk overwrite.</div>
+
+    <!-- Explicit toggle buttons to ensure UI always responds -->
+    <div style="display:flex;gap:.5rem;margin-bottom:.5rem;">
+      <button id="toggleSlotGuideBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;">Toggle Slot Guide</button>
+      <button id="toggleWordBanksBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;">Toggle Word Banks</button>
+    </div>
+
+    <!-- Details sections (app.js will fill the inner content) -->
+    <details id="slotGuideDetails" aria-labelledby="toggleSlotGuideBtn">
+      <summary style="cursor:pointer;font-weight:600;">Slot Guide</summary>
+      <div id="slotGuide" style="padding:.6em 0;"></div>
     </details>
- <details>
-  <summary>Slot Guide</summary>
-  <div id="slotGuide"></div>
-</details>
-<details>
-  <summary>Word Banks</summary>
-  <div id="wordBanks"></div>
-</details>
+
+    <details id="wordBanksDetails" aria-labelledby="toggleWordBanksBtn">
+      <summary style="cursor:pointer;font-weight:600;">Word Banks</summary>
+      <div id="wordBanks" style="padding:.6em 0;"></div>
+    </details>
+
   </div>
+
   <script src="wordbank.js"></script>
   <script src="app.js"></script>
+
+  <!-- Small helper script to ensure toggle buttons always work even if CSS blocks summary interactions -->
+  <script>
+    (function () {
+      const slotDetails = document.getElementById('slotGuideDetails');
+      const wordDetails = document.getElementById('wordBanksDetails');
+      document.getElementById('toggleSlotGuideBtn').addEventListener('click', function () {
+        // toggle open state
+        slotDetails.open = !slotDetails.open;
+        // focus for accessibility
+        if (slotDetails.open) slotDetails.querySelector('summary').focus();
+      });
+      document.getElementById('toggleWordBanksBtn').addEventListener('click', function () {
+        wordDetails.open = !wordDetails.open;
+        if (wordDetails.open) wordDetails.querySelector('summary').focus();
+      });
+
+      // Also make summary clickable via keyboard if CSS removed pointer events
+      document.querySelectorAll('details summary').forEach(summary => {
+        summary.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const details = summary.parentElement;
+            details.open = !details.open;
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
