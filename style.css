@@ -1,41 +1,105 @@
-/* style.css - styling for Prompt Generator app */
-
-:root{
-  --bg:#f5f8fa;
-  --card:#ffffff;
-  --accent:#2e7d32;
-  --muted:#888;
-  --border:#e5e7eb;
-  --btn-blue:#0077cc;
+:root {
+  --bg: #f5f8fa;
+  --card: #ffffff;
+  --accent: #2e7d32;
+  --muted: #888;
+  --border: #e5e7eb;
+  --btn-blue: #0077cc;
+  --text: #111827;
+  --details-bg: rgba(255,255,255,0.6);
+  --input-bg: #fff;
+  --input-text: #111827;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
-  background:var(--bg);
-  color:#111827;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:20px;
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+.container {
+  background: var(--card);
+  color: var(--text);
+}
+details {
+  background: linear-gradient(180deg, var(--details-bg), var(--details-bg));
+}
+.slot-group input,
+textarea {
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+button, .lang-btn, .theme-btn, .foodcat-btn {
+  color: var(--text);
+}
+h1, h2 {
+  color: var(--text);
 }
 
-.container{
-  max-width:900px;
-  margin:20px auto;
-  background:var(--card);
-  border-radius:10px;
-  padding:22px;
-  box-shadow:0 6px 24px rgba(15,23,42,0.06);
-  border:1px solid rgba(0,0,0,0.03);
+/* Dark Theme */
+body.theme-dark {
+  --bg: #181a20;
+  --card: #22242a;
+  --accent: #3ad08c;
+  --muted: #b7b7b7;
+  --border: #33353a;
+  --btn-blue: #00a2ff;
+  --text: #e3eaf1;
+  --details-bg: rgba(32,34,39,0.7);
+  --input-bg: #282a31;
+  --input-text: #e3eaf1;
+}
+/* Soft Dark Theme */
+body.theme-soft {
+  --bg: #21242b;
+  --card: #282a32;
+  --accent: #b0ffcb;
+  --muted: #c6c6c6;
+  --border: #32343c;
+  --btn-blue: #6cb6ff;
+  --text: #e7f7e5;
+  --details-bg: rgba(40,42,50,0.8);
+  --input-bg: #23252b;
+  --input-text: #e7f7e5;
 }
 
-/* Header */
-h1{font-size:1.5rem;margin:0 0 14px}
-h2{font-size:1.05rem;margin:18px 0 8px}
+/* Theme Buttons */
+.theme-btn {
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  border-radius: 7px;
+  padding: 4px 13px;
+  font-size: 0.97rem;
+  margin-right: 3px;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.theme-btn.active,
+.theme-btn:focus {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.theme-btn:hover { background: #d3f5e1; }
 
-/* Form layout */
+.lang-btn {
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  border-radius: 7px;
+  padding: 4px 13px;
+  font-size: 0.97rem;
+  margin-right: 3px;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.lang-btn.active,
+.lang-btn:focus {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.lang-btn:hover { background: #d3f5e1; }
+
 .slot-group{
   display:flex;
   gap:12px;
@@ -57,7 +121,8 @@ textarea{
   border-radius:8px;
   border:1px solid var(--border);
   font-size:0.95rem;
-  background:#fff;
+  background:var(--input-bg);
+  color:var(--input-text);
 }
 .slot-group input:focus,
 textarea:focus{
@@ -66,7 +131,6 @@ textarea:focus{
   border-color:var(--accent);
 }
 
-/* Buttons */
 button{
   font-size:0.95rem;
   padding:8px 12px;
@@ -88,7 +152,6 @@ button[type="submit"]{
 }
 button:hover{filter:brightness(0.98)}
 
-/* Prompt textarea */
 #promptOutput{
   width:100%;
   min-height:90px;
@@ -97,19 +160,17 @@ button:hover{filter:brightness(0.98)}
   line-height:1.45;
 }
 
-/* Toggle buttons row */
 div[style*="display:flex"]{
   margin-top:10px;
   margin-bottom:6px;
 }
 
-/* Details / wordbanks */
 details{
   margin-top:8px;
   border:1px solid var(--border);
   border-radius:8px;
   padding:8px 12px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,250,0.6));
+  background:linear-gradient(180deg, var(--details-bg), var(--details-bg));
 }
 details summary{
   list-style:none;
@@ -119,7 +180,6 @@ details summary{
 }
 .details-content{padding:8px 0}
 
-/* Tables and lists */
 .guide-table{width:100%;border-collapse:collapse}
 .guide-table th,
 .guide-table td{padding:8px;border:1px solid var(--border);vertical-align:top}
@@ -127,13 +187,29 @@ details summary{
 .mono{font-family:monospace;background:#f7f9fb;padding:6px;border-radius:4px}
 .examples{color:var(--muted);font-size:0.95rem}
 
-/* Wordbank slots list */
 .wb-slot{display:inline-block;vertical-align:top;width:45%;margin:6px 2.5%;min-width:240px}
 .wb-slot h4{margin:0 0 6px;font-size:0.95rem}
 .wb-slot ul{margin:0;padding-left:1.1rem;max-height:160px;overflow:auto}
 .wb-slot li{font-size:0.92rem;padding:2px 0;color:#222}
 
-/* Responsive */
+.foodcat-btn {
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  border-radius: 7px;
+  padding: 4px 13px;
+  font-size: 0.97rem;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.foodcat-btn.active,
+.foodcat-btn:focus {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.foodcat-btn:hover { background: #d3f5e1; }
+
 @media (max-width:720px){
   .slot-group{flex-direction:column;align-items:stretch}
   .slot-group label{width:auto}
