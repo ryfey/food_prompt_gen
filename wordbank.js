@@ -105,4 +105,169 @@ window.wordBanks = {
       window.foodCategories.EN["Rice/Protein"],
       window.foodCategories.EN.Drink
     ),
-    action
+    actionState: {
+      Cake: [ "elegantly plated", "frosted", "sprinkled with nuts", "just baked", "sliced", "layered", "drizzled with syrup", "dusting powdered sugar", "decorated with fruits", "cut open" ],
+      Vegetable: [ "freshly chopped", "lightly sautéed", "tossed", "mixed", "steamed", "roasted", "seasoned", "garnished", "blanched", "served chilled" ],
+      "Side Dish": [ "crispy", "juicy", "golden brown", "marinated", "grilled", "spicy", "glazed", "stacked high", "breaded", "smoked" ],
+      "Rice/Protein": [ "sliced", "overflowing", "melting cheese", "dripping sauce", "crispy crust", "layered with toppings", "charred", "served piping hot", "juicy", "topped with herbs", "freshly baked", "double stacked" ],
+      Drink: [ "iced", "steaming hot", "shaken", "layered", "frothed", "whipped", "garnished", "swirling", "with bubbles", "overflowing" ],
+      default: [ "freshly served", "plated", "garnished", "decorated" ]
+    },
+    servingSurface: {
+      Cake: [ "cake stand", "ceramic plate", "vintage platter", "marble board", "golden tray", "glass plate" ],
+      Vegetable: [ "bowl", "wooden platter", "ceramic plate", "salad bowl", "glass bowl" ],
+      "Side Dish": [ "serving basket", "ceramic dish", "wooden board", "metal tray", "paper wrap" ],
+      "Rice/Protein": [ "pizza pan", "burger basket", "wooden platter", "ceramic plate", "cardboard box", "glass plate", "metal tray" ],
+      Drink: [ "glass", "mug", "tumbler", "jar", "cup", "bottle" ],
+      default: [ "plate", "bowl", "tray", "platter" ]
+    },
+    dynamicEffect: {
+      Cake: [ "falling crumbs", "dripping chocolate", "swirling cream", "powdered sugar falling", "fruit slices tumbling" ],
+      Vegetable: [ "dripping dressing", "sprinkled seeds", "fresh herbs falling", "steam rising", "splash of vinaigrette" ],
+      "Side Dish": [ "sizzling", "steam rising", "falling spices", "dripping sauce", "crunchy flakes flying" ],
+      "Rice/Protein": [ "melting cheese", "dripping sauce", "steaming", "crumbs falling", "splashing ketchup", "swirling herbs", "rising steam" ],
+      Drink: [ "swirling ice", "splashing liquid", "bubbles rising", "steam curling", "fruit slices floating" ],
+      default: [ "steam rising", "splashing", "crumbs falling" ]
+    },
+    propElements: {
+      Cake: [ "fresh berries", "mint leaves", "fork and knife", "cake server", "flower petals", "lace napkin" ],
+      Vegetable: [ "fresh herbs", "lemon wedge", "wooden spoon", "linen napkin", "olive oil", "whole spices" ],
+      "Side Dish": [ "dipping sauce", "salad greens", "cutlery", "pickles", "potato chips", "parsley" ],
+      "Rice/Protein": [ "tomato slices", "lettuce", "cheese slice", "jalapeno", "sauce cup", "wooden fork", "onion rings", "fries", "pickle", "herbs" ],
+      Drink: [ "straw", "citrus slice", "mint sprig", "ice cubes", "umbrella", "coaster" ],
+      default: [ "herbs", "cutlery", "napkin", "lemon wedge" ]
+    },
+    cameraAngle: [
+      "top-down", "45° angle", "extreme close-up", "eye-level", "side profile",
+      "low angle", "overhead", "macro", "diagonal", "dynamic tilt",
+      "bird-eye", "worm-eye", "three-quarters", "skewed angle", "symmetric angle",
+      "off-center", "vertical", "high angle", "low angle", "frontal"
+    ],
+    lightingType: [
+      "natural light", "dramatic backlight", "moody low-key", "bright studio", "warm candlelight", "cool ambient", "soft sidelight", "spotlight", "shadow play", "color filter",
+      "morning light", "evening light", "dimmed light", "window light", "hanging lamp", "softbox light", "neon light", "kitchen lamp", "silhouette light", "reflective light"
+    ],
+    backdropType: [
+      "dark textured backdrop", "bright pastel surface", "wooden table", "vintage fabric", "marble backdrop", "plain white background", "neutral gradient", "patterned tiles", "outdoor scene", "kraft paper",
+      "rustic backdrop", "stone surface", "batik cloth", "granite surface", "tropical leaves", "woven bamboo", "linen cloth", "glass surface", "ceramic backdrop", "blurred photo background"
+    ],
+    moodAtmosphere: [
+      "cozy and warm", "vibrant and energetic", "luxurious and elegant", "fresh and lively", "traditional", "romantic", "minimalist clean", "urban modern", "festive", "mysterious",
+      "relaxed", "casual", "nostalgic", "exclusive", "party crowd", "slow living", "picnic", "family reunion", "tropical vibe", "countryside atmosphere"
+    ],
+    colorPalette: [
+      "earth tones", "bright colors", "pastel hues", "monochrome", "gold accents", "cool blues", "warm reds", "natural greens", "neutral greys", "tropical colors",
+      "traditional palette", "brown palette", "yellow palette", "leafy green palette", "orange palette", "purple palette", "sea blue palette", "pink palette", "black & white palette", "natural palette"
+    ],
+    compositionStyle: [
+      "minimalist centered", "editorial flatlay", "commercial advertising", "balanced asymmetry", "dynamic diagonal", "rule of thirds", "close crop", "layered depth", "negative space", "pattern repetition",
+      "zigzag composition", "frame-in-frame", "spiral composition", "grid composition", "overlay composition", "layered composition", "circular composition", "pyramid composition", "symmetric composition", "diagonal composition"
+    ],
+    emotionKeywords: [
+      "mouth-watering", "inviting", "indulgent", "refreshing", "comforting", "festive", "bold", "delicate", "tempting", "serene",
+      "nostalgic", "calming", "pampering", "exciting", "soothing", "cooling", "thrilling", "entertaining", "joyful", "captivating"
+    ]
+  },
+  ID: {
+    mainSubject: [].concat(
+      window.foodCategories.ID.Kue,
+      window.foodCategories.ID.Sayur,
+      window.foodCategories.ID.Lauk,
+      window.foodCategories.ID["Nasi/Protein"],
+      window.foodCategories.ID.Minuman
+    ),
+    actionState: {
+      Kue: [ "tersaji rapi", "berlapis-lapis", "bertabur kacang", "baru dipanggang", "dipotong", "digulung", "ditaburi gula halus", "dihias buah", "dipotong terbuka" ],
+      Sayur: [ "baru dicincang", "ditumis ringan", "diaduk", "dicampur", "dikukus", "dipanggang", "dibumbui", "dihias", "direbus", "disajikan dingin" ],
+      Lauk: [ "renyah", "berair", "cokelat keemasan", "dimarinasi", "dipanggang", "pedas", "berlapis saus", "ditumpuk tinggi", "berbalut tepung", "diasap" ],
+      "Nasi/Protein": [ "dipotong", "berlimpah", "keju meleleh", "saus menetes", "kulit renyah", "berlapis topping", "terpanggang", "disajikan panas", "berair", "ditaburi daun", "baru dipanggang", "double stack", "dengan topping keju", "dengan saus tomat" ],
+      Minuman: [ "ber-es", "panas", "diaduk", "berlapis", "berbusa", "dikocok", "dihias", "berputar", "bergelembung", "melimpah" ],
+      default: [ "baru disajikan", "ditata", "dihias", "dekoratif" ]
+    },
+    servingSurface: {
+      Kue: [ "tatakan kue", "piring keramik", "nampan vintage", "papan marmer", "dulang emas", "piring kaca" ],
+      Sayur: [ "mangkuk", "papan kayu", "piring keramik", "mangkuk salad", "mangkuk kaca" ],
+      Lauk: [ "keranjang saji", "wadah keramik", "papan kayu", "nampan logam", "bungkus kertas" ],
+      "Nasi/Protein": [ "pan pizza", "keranjang burger", "papan kayu", "piring keramik", "kotak kardus", "piring kaca", "nampan logam" ],
+      Minuman: [ "gelas", "mug", "tumbler", "toples", "cangkir", "botol" ],
+      default: [ "piring", "mangkuk", "nampan", "dulang" ]
+    },
+    dynamicEffect: {
+      Kue: [ "remah jatuh", "cokelat meleleh", "krim berputar", "gula halus beterbangan", "potongan buah jatuh" ],
+      Sayur: [ "dressing menetes", "biji bertabur", "daun segar jatuh", "asap naik", "percikan vinaigrette" ],
+      Lauk: [ "mendesis", "asap naik", "bumbu berjatuhan", "saus menetes", "serpihan renyah beterbangan" ],
+      "Nasi/Protein": [ "keju meleleh", "saus menetes", "asap mengepul", "remah jatuh", "saus tomat memercik", "herbal berputar", "asap naik" ],
+      Minuman: [ "es berputar", "cairan memercik", "gelembung naik", "asap melingkar", "potongan buah terapung" ],
+      default: [ "asap naik", "percikan", "remah jatuh" ]
+    },
+    propElements: {
+      Kue: [ "buah segar", "daun mint", "garpu dan pisau", "alat kue", "kelopak bunga", "serbet renda" ],
+      Sayur: [ "daun segar", "irisan lemon", "sendok kayu", "serbet linen", "minyak zaitun", "rempah utuh" ],
+      Lauk: [ "saus celup", "salad", "alat makan", "acar", "keripik kentang", "peterseli" ],
+      "Nasi/Protein": [ "irisan tomat", "selada", "lembaran keju", "irisan jalapeno", "cup saus", "garpu kayu", "onion ring", "kentang goreng", "acar", "herbal" ],
+      Minuman: [ "sedotan", "irisan jeruk", "daun mint", "es batu", "payung kecil", "tatakan gelas" ],
+      default: [ "herbal", "alat makan", "serbet", "irisan lemon" ]
+    },
+    cameraAngle: [
+      "atas langsung", "sudut 45°", "close-up ekstrem", "sejajar mata", "profil samping",
+      "angle rendah", "overhead", "makro", "diagonal", "tilt dinamis",
+      "bird-eye", "worm-eye", "sudut tiga perempat", "sudut miring", "angle simetris",
+      "off-center", "sudut vertikal", "high angle", "low angle", "frontal"
+    ],
+    lightingType: [
+      "pencahayaan alami", "backlight dramatis", "low-key gelap", "cahaya studio terang", "cahaya lilin hangat", "ambien sejuk", "pencahayaan samping lembut", "spotlight", "bayangan bermain", "filter warna",
+      "pencahayaan pagi", "cahaya senja", "cahaya redup", "cahaya jendela", "cahaya lampu gantung", "pencahayaan softbox", "cahaya neon", "cahaya lampu dapur", "cahaya siluet", "cahaya reflektif"
+    ],
+    backdropType: [
+      "latar gelap tekstur", "permukaan pastel cerah", "meja kayu", "kain vintage", "latar marmer", "latar polos putih", "gradient netral", "ubin bermotif", "latar luar ruangan", "kertas coklat kraft",
+      "latar rustic", "permukaan batu", "taplak batik", "permukaan granit", "latar daun tropis", "latar anyaman bambu", "latar kain linen", "permukaan kaca", "latar keramik", "latar foto blur"
+    ],
+    moodAtmosphere: [
+      "hangat dan nyaman", "ceria dan bersemangat", "mewah dan elegan", "segar dan hidup", "nuansa tradisional", "romantis", "minimalis bersih", "urban modern", "meriah", "misterius",
+      "santai", "kasual", "nostalgik", "eksklusif", "ramai pesta", "slow living", "piknik", "reuni keluarga", "nuansa tropis", "nuansa pedesaan"
+    ],
+    colorPalette: [
+      "warna bumi", "warna cerah", "nuansa pastel", "monokrom", "aksen emas", "biru sejuk", "merah hangat", "hijau alami", "abu netral", "warna tropis",
+      "warna tradisional", "palet coklat", "palet kuning", "palet hijau daun", "palet oranye", "palet ungu", "palet biru laut", "palet merah muda", "palet hitam putih", "palet natural"
+    ],
+    compositionStyle: [
+      "minimalis terpusat", "flatlay editorial", "iklan komersial", "asimetri seimbang", "diagonal dinamis", "rule of thirds", "crop dekat", "depth bertingkat", "ruang negatif", "pola berulang",
+      "komposisi zigzag", "frame dalam frame", "komposisi spiral", "komposisi grid", "komposisi overlay", "komposisi berlapis", "komposisi melingkar", "komposisi piramida", "komposisi simetris", "komposisi diagonal"
+    ],
+    emotionKeywords: [
+      "menggugah selera", "mengundang", "lezat maksimal", "menyegarkan", "menghangatkan hati", "meriah", "berani", "lembut", "menggiurkan", "tenang",
+      "nostalgis", "menenangkan", "memanjakan", "mengasyikkan", "menenangkan jiwa", "menyejukkan", "menggetarkan", "menghibur", "membahagiakan", "memikat"
+    ]
+  }
+};
+
+window.slotGuide = {
+  EN: [
+    {slot: "[Main Subject]", desc: "Main food/drink you want featured", ex: "sushi platter, chocolate lava cake, iced coffee"},
+    {slot: "[Action/State]", desc: "What’s happening with the food", ex: "elegantly plated, dripping with sauce, midair falling"},
+    {slot: "[Serving Surface]", desc: "Dish or surface where food is placed", ex: "ceramic plate, wooden board, glass bowl"},
+    {slot: "[Dynamic Effect]", desc: "Optional movement or effect", ex: "steaming, crumbs falling, milk splashing"},
+    {slot: "[Camera Angle]", desc: "How the camera views the food", ex: "top-down, 45° angle, extreme close-up"},
+    {slot: "[Prop Elements]", desc: "Decorative/contextual items around food", ex: "fresh herbs, silver cutlery, ice cubes"},
+    {slot: "[Lighting Type]", desc: "Style and direction of lighting", ex: "natural light, dramatic backlight, moody low-key"},
+    {slot: "[Backdrop Type]", desc: "Background look", ex: "dark textured backdrop, pastel surface, marble slab"},
+    {slot: "[Mood/Atmosphere Style]", desc: "Emotional tone of the shot", ex: "cozy and warm, vibrant, luxurious"},
+    {slot: "[Color Palette]", desc: "Color palette", ex: "earth tones, bright colors, pastel hues"},
+    {slot: "[Composition Style]", desc: "Framing and layout style", ex: "minimalist centered, editorial flatlay, commercial advertising"},
+    {slot: "[Emotion/Mood Keywords]", desc: "Final touch of emotional language", ex: "mouth-watering, inviting, refreshing"}
+  ],
+  ID: [
+    {slot: "[Main Subject]", desc: "Makanan/minuman utama yang ingin ditampilkan", ex: "nasi goreng, sate ayam, es cendol"},
+    {slot: "[Action/State]", desc: "Apa yang terjadi pada makanan", ex: "tersaji rapi, berlumur saus, sedang diangkat"},
+    {slot: "[Serving Surface]", desc: "Wadah atau permukaan tempat makanan diletakkan", ex: "piring keramik, daun pisang, mangkuk kayu"},
+    {slot: "[Dynamic Effect]", desc: "Efek gerak atau visual opsional", ex: "asap mengepul, kuah menetes, butiran kelapa jatuh"},
+    {slot: "[Camera Angle]", desc: "Sudut pandang kamera terhadap makanan", ex: "atas langsung, sudut 45°, close-up ekstrem"},
+    {slot: "[Prop Elements]", desc: "Properti dekoratif di sekitar makanan", ex: "daun seledri, sendok perak, bunga melati"},
+    {slot: "[Lighting Type]", desc: "Gaya dan arah pencahayaan", ex: "pencahayaan alami, backlight dramatis, low-key gelap"},
+    {slot: "[Backdrop Type]", desc: "Karakter latar belakang", ex: "latar gelap tekstur, permukaan pastel cerah, meja kayu"},
+    {slot: "[Mood/Atmosphere Style]", desc: "Nuansa atau mood foto", ex: "hangat dan nyaman, ceria dan bersemangat, mewah dan elegan"},
+    {slot: "[Color Palette]", desc: "Nuansa warna", ex: "warna bumi, nuansa pastel, aksen emas"},
+    {slot: "[Composition Style]", desc: "Gaya komposisi dan framing", ex: "minimalis terpusat, flatlay editorial, iklan komersial"},
+    {slot: "[Emotion/Mood Keywords]", desc: "Kesan emosi akhir", ex: "menggugah selera, menyegarkan, memanjakan"}
+  ]
+};
