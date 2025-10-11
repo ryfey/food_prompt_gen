@@ -1,121 +1,111 @@
-// app.js
-// Logika utama aplikasi prompt generator
-// Mengharapkan adanya window.wordBanks dan window.slotGuide dari wordbank.js
+// app.js - Multi Language + Theme + Slot relevance per category
 
+const LANGS = ["ID", "EN"];
+let currentLang = "ID";
 
-const translations = {
-  en: {
-    langLabel: "Language:",
-    appTitle: "Analyze Food Photo & Prompt Generator",
-    mainSubject: "Main Subject:",
-    actionState: "Action/State:",
-    servingSurface: "Serving Surface:",
-    dynamicEffect: "Dynamic Effect:",
-    cameraAngle: "Camera Angle:",
-    propElements: "Prop Elements:",
-    lightingType: "Lighting Type:",
-    backdropType: "Backdrop Type:",
-    moodAtmosphere: "Mood/Atmosphere Style:",
-    colorPalette: "Color Palette:",
-    compositionStyle: "Composition Style:",
-    emotionKeywords: "Emotion/Mood Keywords:",
-    generateBtn: "Generate Prompt",
-    randomPromptBtn: "Random Prompt",
-    promptOutputTitle: "Prompt Output",
-    promptEditHint: "* Prompt can be manually edited, or click Generate/Random to overwrite.",
-    toggleSlotGuideBtn: "Toggle Slot Guide",
-    toggleWordBanksBtn: "Toggle Word Banks",
-    slotGuideSummary: "Slot Guide",
-    wordBanksSummary: "Word Banks"
-  },
-  id: {
-    langLabel: "Bahasa:",
-    appTitle: "Analisis Foto Makanan & Prompt Generator",
-    mainSubject: "Subjek Utama:",
-    actionState: "Aksi/Keadaan:",
-    servingSurface: "Permukaan Penyajian:",
-    dynamicEffect: "Efek Dinamis:",
-    cameraAngle: "Sudut Kamera:",
-    propElements: "Elemen Properti:",
-    lightingType: "Jenis Pencahayaan:",
-    backdropType: "Jenis Latar:",
-    moodAtmosphere: "Gaya Suasana/Hati:",
-    colorPalette: "Palet Warna:",
-    compositionStyle: "Gaya Komposisi:",
-    emotionKeywords: "Kata Kunci Emosi/Suasana:",
-    generateBtn: "Buat Prompt",
-    randomPromptBtn: "Prompt Acak",
-    promptOutputTitle: "Hasil Prompt",
-    promptEditHint: "* Prompt dapat diedit manual, atau klik Buat/Acak untuk overwrite.",
-    toggleSlotGuideBtn: "Tampilkan Panduan Slot",
-    toggleWordBanksBtn: "Tampilkan Bank Kata",
-    slotGuideSummary: "Panduan Slot",
-    wordBanksSummary: "Bank Kata"
-  }
-};
-
-function setLanguage(lang) {
-  const t = translations[lang] || translations['id'];
-  document.getElementById('langSelectLabel').textContent = t.langLabel;
-  document.getElementById('appTitle').textContent = t.appTitle;
-  document.getElementById('mainSubjectLabel').textContent = t.mainSubject;
-  document.getElementById('actionStateLabel').textContent = t.actionState;
-  document.getElementById('servingSurfaceLabel').textContent = t.servingSurface;
-  document.getElementById('dynamicEffectLabel').textContent = t.dynamicEffect;
-  document.getElementById('cameraAngleLabel').textContent = t.cameraAngle;
-  document.getElementById('propElementsLabel').textContent = t.propElements;
-  document.getElementById('lightingTypeLabel').textContent = t.lightingType;
-  document.getElementById('backdropTypeLabel').textContent = t.backdropType;
-  document.getElementById('moodAtmosphereLabel').textContent = t.moodAtmosphere;
-  document.getElementById('colorPaletteLabel').textContent = t.colorPalette;
-  document.getElementById('compositionStyleLabel').textContent = t.compositionStyle;
-  document.getElementById('emotionKeywordsLabel').textContent = t.emotionKeywords;
-  document.getElementById('generateBtn').textContent = t.generateBtn;
-  document.getElementById('randomPromptBtn').textContent = t.randomPromptBtn;
-  document.getElementById('promptOutputTitle').textContent = t.promptOutputTitle;
-  document.getElementById('promptEditHint').textContent = t.promptEditHint;
-  document.getElementById('toggleSlotGuideBtn').textContent = t.toggleSlotGuideBtn;
-  document.getElementById('toggleWordBanksBtn').textContent = t.toggleWordBanksBtn;
-  document.getElementById('slotGuideSummary').textContent = t.slotGuideSummary;
-  document.getElementById('wordBanksSummary').textContent = t.wordBanksSummary;
-}
-
-// set language on startup (default to 'id')
-setLanguage('id');
-
-// language selector change event
-document.getElementById('langSelect').addEventListener('change', function () {
-  setLanguage(this.value);
-});
-
+// Used slots
 const slots = [
   "mainSubject", "actionState", "servingSurface", "dynamicEffect",
   "cameraAngle", "propElements", "lightingType", "backdropType",
   "moodAtmosphere", "colorPalette", "compositionStyle", "emotionKeywords"
 ];
 
+const mainSubjectCats = {
+  EN: ["All", "Cake", "Vegetable", "Side Dish", "Rice/Protein", "Drink"],
+  ID: ["All", "Kue", "Sayur", "Lauk", "Nasi/Protein", "Minuman"]
+};
+
+function updateUIText() {
+  const txt = window.uiText[currentLang];
+  document.getElementById("appTitle").textContent = txt.title;
+  document.getElementById("labelMainSubject").textContent = txt.mainSubject;
+  document.getElementById("labelActionState").textContent = txt.actionState;
+  document.getElementById("labelServingSurface").textContent = txt.servingSurface;
+  document.getElementById("labelDynamicEffect").textContent = txt.dynamicEffect;
+  document.getElementById("labelCameraAngle").textContent = txt.cameraAngle;
+  document.getElementById("labelPropElements").textContent = txt.propElements;
+  document.getElementById("labelLightingType").textContent = txt.lightingType;
+  document.getElementById("labelBackdropType").textContent = txt.backdropType;
+  document.getElementById("labelMoodAtmosphere").textContent = txt.moodAtmosphere;
+  document.getElementById("labelColorPalette").textContent = txt.colorPalette;
+  document.getElementById("labelCompositionStyle").textContent = txt.compositionStyle;
+  document.getElementById("labelEmotionKeywords").textContent = txt.emotionKeywords;
+  document.getElementById("btnGenerate").textContent = txt.generate;
+  document.getElementById("randomPromptBtn").textContent = txt.random;
+  document.getElementById("outputTitle").textContent = txt.output;
+  document.getElementById("outputNote").textContent = txt.note;
+
+  // Update category buttons
+  const btns = document.querySelectorAll(".foodcat-btn");
+  btns.forEach((btn, i) => {
+    const cat = btn.getAttribute("data-cat");
+    btn.textContent = txt.categories[cat] || cat;
+  });
+}
+
 function fillDatalists() {
-  if (!window.wordBanks) return;
+  // global slots only (not per category)
+  if (!window.wordBanks[currentLang]) return;
   slots.forEach(slot => {
+    if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot)) return;
+    if (slot === "mainSubject") return;
     const listId = slot + "List";
     const datalist = document.getElementById(listId);
     if (!datalist) return;
+    const arr = window.wordBanks[currentLang][slot] || [];
     datalist.innerHTML = "";
-    const arr = window.wordBanks[slot] || [];
     arr.forEach(opt => {
       const el = document.createElement("option");
-      // If opt is empty string, skip showing it in the datalist but allow blank input
       if (opt) el.value = opt;
       datalist.appendChild(el);
     });
   });
 }
 
+function fillSlotDatalist(slot, category) {
+  const datalist = document.getElementById(slot + "List");
+  let arr;
+  if (window.wordBanks[currentLang][slot]) {
+    arr = window.wordBanks[currentLang][slot][category] || window.wordBanks[currentLang][slot].default || [];
+  } else {
+    arr = [];
+  }
+  datalist.innerHTML = "";
+  arr.forEach(opt => {
+    const el = document.createElement("option");
+    el.value = opt;
+    datalist.appendChild(el);
+  });
+}
+
+function fillMainSubjectDatalist(category) {
+  let arr;
+  if (category === "All") {
+    arr = window.wordBanks[currentLang].mainSubject;
+  } else {
+    arr = window.foodCategories[currentLang][category] || [];
+  }
+  const datalist = document.getElementById("mainSubjectList");
+  datalist.innerHTML = "";
+  arr.forEach(opt => {
+    const el = document.createElement("option");
+    el.value = opt;
+    datalist.appendChild(el);
+  });
+}
+
+function updateCategorySlots(cat) {
+  fillSlotDatalist("actionState", cat);
+  fillSlotDatalist("servingSurface", cat);
+  fillSlotDatalist("dynamicEffect", cat);
+  fillSlotDatalist("propElements", cat);
+}
+
 function renderSlotGuide() {
   const container = document.getElementById("slotGuide");
-  if (!container || !window.slotGuide) return;
+  if (!container || !window.slotGuide[currentLang]) return;
   let html = '<table class="guide-table"><thead><tr><th>Slot</th><th>Guide</th><th>Example</th></tr></thead><tbody>';
-  window.slotGuide.forEach(s => {
+  window.slotGuide[currentLang].forEach(s => {
     html += `<tr>
       <td class="mono">${escapeHtml(s.slot)}</td>
       <td>${escapeHtml(s.desc)}</td>
@@ -128,45 +118,80 @@ function renderSlotGuide() {
 
 function renderWordBanks() {
   const container = document.getElementById("wordBanks");
-  if (!container || !window.wordBanks) return;
+  if (!container || !window.wordBanks[currentLang]) return;
   let html = "";
   slots.forEach(slot => {
-    const pretty = slot.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
+    const pretty = window.uiText[currentLang][slot] || slot.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
     html += `<div class="wb-slot"><h4>${escapeHtml(pretty)}</h4><ul>`;
-    (window.wordBanks[slot] || []).forEach(item => {
-      html += `<li>${escapeHtml(item || "(kosong)")}</li>`;
-    });
+    // Per slot, per kategori
+    let arr;
+    if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot)) {
+      // List all per category
+      Object.keys(window.wordBanks[currentLang][slot]).forEach(cat => {
+        html += `<li style="font-weight:bold;color:#2e7d32;">[${cat}]</li>`;
+        (window.wordBanks[currentLang][slot][cat] || []).forEach(item => {
+          html += `<li>${escapeHtml(item || "(empty)")}</li>`;
+        });
+      });
+    } else {
+      (window.wordBanks[currentLang][slot] || []).forEach(item => {
+        html += `<li>${escapeHtml(item || "(empty)")}</li>`;
+      });
+    }
     html += `</ul></div>`;
   });
   container.innerHTML = html;
 }
 
 function generatePrompt(values) {
-  // Clean & fallback
   const vs = {};
   slots.forEach(s => {
     vs[s] = (values[s] || "").trim();
   });
 
-  const dynamicPart = vs.dynamicEffect ? ` dengan ${vs.dynamicEffect}` : "";
-  const prompt =
-    `${vs.mainSubject} ${vs.actionState} di atas ${vs.servingSurface}${dynamicPart},\n` +
-    `diambil dari sudut ${vs.cameraAngle},\n` +
-    `dihias dengan ${vs.propElements} di sekelilingnya,\n` +
-    `menggunakan ${vs.lightingType} dan ${vs.backdropType},\n` +
-    `dengan suasana ${vs.moodAtmosphere},\n` +
-    `bertekstur sangat detail, hiper-realistis, 8K UHD, fokus tajam,\n` +
-    `palet warna ${vs.colorPalette},\n` +
-    `gaya komposisi ${vs.compositionStyle}, kesan ${vs.emotionKeywords}`;
-
-  return prompt;
+  // Prompt skeleton EN/ID
+  if (currentLang === "EN") {
+    return (
+      `${vs.mainSubject} ${vs.actionState} on ${vs.servingSurface}` +
+      (vs.dynamicEffect ? ` with ${vs.dynamicEffect}` : "") + ",\n" +
+      `shot from ${vs.cameraAngle} angle,\n` +
+      `decorated with ${vs.propElements} around,\n` +
+      `using ${vs.lightingType} and ${vs.backdropType},\n` +
+      `with a ${vs.moodAtmosphere} mood,\n` +
+      `super detailed texture, hyper-realistic, 8K UHD, sharp focus,\n` +
+      `color palette: ${vs.colorPalette},\n` +
+      `composition style: ${vs.compositionStyle}, impression: ${vs.emotionKeywords}`
+    );
+  } else {
+    return (
+      `${vs.mainSubject} ${vs.actionState} di atas ${vs.servingSurface}` +
+      (vs.dynamicEffect ? ` dengan ${vs.dynamicEffect}` : "") + ",\n" +
+      `diambil dari sudut ${vs.cameraAngle},\n` +
+      `dihias dengan ${vs.propElements} di sekelilingnya,\n` +
+      `menggunakan ${vs.lightingType} dan ${vs.backdropType},\n` +
+      `dengan suasana ${vs.moodAtmosphere},\n` +
+      `bertekstur sangat detail, hiper-realistis, 8K UHD, fokus tajam,\n` +
+      `palet warna ${vs.colorPalette},\n` +
+      `gaya komposisi ${vs.compositionStyle}, kesan ${vs.emotionKeywords}`
+    );
+  }
 }
 
 function randomPrompt() {
-  if (!window.wordBanks) return;
+  if (!window.wordBanks[currentLang]) return;
   const vals = {};
+  // Find active category
+  let cat = document.querySelector(".foodcat-btn.active").getAttribute("data-cat");
   slots.forEach(slot => {
-    const arr = window.wordBanks[slot] && window.wordBanks[slot].length ? window.wordBanks[slot] : [""];
+    let arr;
+    if (slot === "mainSubject") {
+      arr = [];
+      document.querySelectorAll('#mainSubjectList option').forEach(opt => arr.push(opt.value));
+    } else if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot)) {
+      arr = window.wordBanks[currentLang][slot][cat] || window.wordBanks[currentLang][slot].default || [];
+    } else {
+      arr = window.wordBanks[currentLang][slot] && window.wordBanks[currentLang][slot].length ? window.wordBanks[currentLang][slot] : [""];
+    }
     const idx = Math.floor(Math.random() * arr.length);
     const choice = arr[idx] || "";
     vals[slot] = choice;
@@ -185,13 +210,71 @@ function escapeHtml(s) {
     .replace(/>/g, "&gt;");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Populate datalists & side panels
+function switchLang(lang) {
+  currentLang = lang;
+  updateUIText();
   fillDatalists();
   renderSlotGuide();
   renderWordBanks();
+  fillMainSubjectDatalist(mainSubjectCats[currentLang][0]);
+  updateCategorySlots(mainSubjectCats[currentLang][0]);
+  document.querySelectorAll(".foodcat-btn").forEach((btn, i) => {
+    btn.classList.remove("active");
+    if (i === 0) btn.classList.add("active");
+  });
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.remove("active");
+    if (btn.getAttribute("data-lang") === lang) btn.classList.add("active");
+  });
+  document.getElementById("mainSubject").value = "";
+}
 
-  // Form submit -> generate prompt (reads from inputs)
+// Theme switcher logic
+function switchTheme(theme) {
+  document.body.classList.remove('theme-light', 'theme-dark', 'theme-soft');
+  if (theme === 'dark') document.body.classList.add('theme-dark');
+  else if (theme === 'soft') document.body.classList.add('theme-soft');
+  else document.body.classList.add('theme-light');
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-theme') === theme) btn.classList.add('active');
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  updateUIText();
+  fillDatalists();
+  renderSlotGuide();
+  renderWordBanks();
+  fillMainSubjectDatalist(mainSubjectCats[currentLang][0]);
+  updateCategorySlots(mainSubjectCats[currentLang][0]);
+
+  document.querySelectorAll(".foodcat-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      const cat = btn.getAttribute("data-cat");
+      fillMainSubjectDatalist(cat);
+      document.getElementById("mainSubject").value = "";
+      document.querySelectorAll(".foodcat-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      updateCategorySlots(cat);
+    });
+  });
+
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      const lang = btn.getAttribute("data-lang");
+      if (lang !== currentLang) switchLang(lang);
+    });
+  });
+
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const theme = btn.getAttribute('data-theme');
+      switchTheme(theme);
+    });
+  });
+  switchTheme('light');
+
   const form = document.getElementById("promptForm");
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -206,45 +289,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Random prompt button
   const randBtn = document.getElementById("randomPromptBtn");
   if (randBtn) randBtn.addEventListener("click", randomPrompt);
 
-  // Make prompt output editable and auto-select on focus
   const out = document.getElementById("promptOutput");
   if (out) {
     out.readOnly = false;
     out.addEventListener("focus", function () { out.select(); });
-  }
-
-  // Optional: update the datalists and wordBanks panels if wordbank.js changed later
-  // (useful for dynamic editing of window.wordBanks)
-  if (window.__wordbank_observe !== true) {
-    window.__wordbank_observe = true;
-    try {
-      // If wordBanks is later assigned, attempt to re-fill once
-      const original = window.wordBanks;
-      Object.defineProperty(window, "wordBanks", {
-        configurable: true,
-        enumerable: true,
-        get() { return original; },
-        set(v) {
-          // assign and re-render
-          Object.defineProperty(window, "wordBanks", {
-            value: v,
-            writable: true,
-            configurable: true,
-            enumerable: true
-          });
-          setTimeout(() => {
-            fillDatalists();
-            renderWordBanks();
-          }, 0);
-          return v;
-        }
-      });
-    } catch (e) {
-      // ignore if defineProperty fails
-    }
   }
 });
