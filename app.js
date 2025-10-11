@@ -2,6 +2,92 @@
 // Logika utama aplikasi prompt generator
 // Mengharapkan adanya window.wordBanks dan window.slotGuide dari wordbank.js
 
+
+const translations = {
+  en: {
+    langLabel: "Language:",
+    appTitle: "Analyze Food Photo & Prompt Generator",
+    mainSubject: "Main Subject:",
+    actionState: "Action/State:",
+    servingSurface: "Serving Surface:",
+    dynamicEffect: "Dynamic Effect:",
+    cameraAngle: "Camera Angle:",
+    propElements: "Prop Elements:",
+    lightingType: "Lighting Type:",
+    backdropType: "Backdrop Type:",
+    moodAtmosphere: "Mood/Atmosphere Style:",
+    colorPalette: "Color Palette:",
+    compositionStyle: "Composition Style:",
+    emotionKeywords: "Emotion/Mood Keywords:",
+    generateBtn: "Generate Prompt",
+    randomPromptBtn: "Random Prompt",
+    promptOutputTitle: "Prompt Output",
+    promptEditHint: "* Prompt can be manually edited, or click Generate/Random to overwrite.",
+    toggleSlotGuideBtn: "Toggle Slot Guide",
+    toggleWordBanksBtn: "Toggle Word Banks",
+    slotGuideSummary: "Slot Guide",
+    wordBanksSummary: "Word Banks"
+  },
+  id: {
+    langLabel: "Bahasa:",
+    appTitle: "Analisis Foto Makanan & Prompt Generator",
+    mainSubject: "Subjek Utama:",
+    actionState: "Aksi/Keadaan:",
+    servingSurface: "Permukaan Penyajian:",
+    dynamicEffect: "Efek Dinamis:",
+    cameraAngle: "Sudut Kamera:",
+    propElements: "Elemen Properti:",
+    lightingType: "Jenis Pencahayaan:",
+    backdropType: "Jenis Latar:",
+    moodAtmosphere: "Gaya Suasana/Hati:",
+    colorPalette: "Palet Warna:",
+    compositionStyle: "Gaya Komposisi:",
+    emotionKeywords: "Kata Kunci Emosi/Suasana:",
+    generateBtn: "Buat Prompt",
+    randomPromptBtn: "Prompt Acak",
+    promptOutputTitle: "Hasil Prompt",
+    promptEditHint: "* Prompt dapat diedit manual, atau klik Buat/Acak untuk overwrite.",
+    toggleSlotGuideBtn: "Tampilkan Panduan Slot",
+    toggleWordBanksBtn: "Tampilkan Bank Kata",
+    slotGuideSummary: "Panduan Slot",
+    wordBanksSummary: "Bank Kata"
+  }
+};
+
+function setLanguage(lang) {
+  const t = translations[lang] || translations['id'];
+  document.getElementById('langSelectLabel').textContent = t.langLabel;
+  document.getElementById('appTitle').textContent = t.appTitle;
+  document.getElementById('mainSubjectLabel').textContent = t.mainSubject;
+  document.getElementById('actionStateLabel').textContent = t.actionState;
+  document.getElementById('servingSurfaceLabel').textContent = t.servingSurface;
+  document.getElementById('dynamicEffectLabel').textContent = t.dynamicEffect;
+  document.getElementById('cameraAngleLabel').textContent = t.cameraAngle;
+  document.getElementById('propElementsLabel').textContent = t.propElements;
+  document.getElementById('lightingTypeLabel').textContent = t.lightingType;
+  document.getElementById('backdropTypeLabel').textContent = t.backdropType;
+  document.getElementById('moodAtmosphereLabel').textContent = t.moodAtmosphere;
+  document.getElementById('colorPaletteLabel').textContent = t.colorPalette;
+  document.getElementById('compositionStyleLabel').textContent = t.compositionStyle;
+  document.getElementById('emotionKeywordsLabel').textContent = t.emotionKeywords;
+  document.getElementById('generateBtn').textContent = t.generateBtn;
+  document.getElementById('randomPromptBtn').textContent = t.randomPromptBtn;
+  document.getElementById('promptOutputTitle').textContent = t.promptOutputTitle;
+  document.getElementById('promptEditHint').textContent = t.promptEditHint;
+  document.getElementById('toggleSlotGuideBtn').textContent = t.toggleSlotGuideBtn;
+  document.getElementById('toggleWordBanksBtn').textContent = t.toggleWordBanksBtn;
+  document.getElementById('slotGuideSummary').textContent = t.slotGuideSummary;
+  document.getElementById('wordBanksSummary').textContent = t.wordBanksSummary;
+}
+
+// set language on startup (default to 'id')
+setLanguage('id');
+
+// language selector change event
+document.getElementById('langSelect').addEventListener('change', function () {
+  setLanguage(this.value);
+});
+
 const slots = [
   "mainSubject", "actionState", "servingSurface", "dynamicEffect",
   "cameraAngle", "propElements", "lightingType", "backdropType",
