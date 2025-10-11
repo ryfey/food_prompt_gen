@@ -8,131 +8,118 @@
 </head>
 <body>
   <div class="container">
-    <h1>Analyze Food Photo & Prompt Generator</h1>
+    <!-- Language Selector -->
+    <div style="text-align:right;margin-bottom:0.5em;">
+      <label for="langSelect" id="langSelectLabel">Bahasa:</label>
+      <select id="langSelect">
+        <option value="id">Indonesia</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <h1 id="appTitle"></h1>
 
     <form id="promptForm">
-      <!-- Combo inputs (input + datalist) -->
       <div class="slot-group">
-        <label for="mainSubject">Main Subject:</label>
+        <label for="mainSubject" id="mainSubjectLabel"></label>
         <input id="mainSubject" list="mainSubjectList" autocomplete="off" />
         <datalist id="mainSubjectList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="actionState">Action/State:</label>
+        <label for="actionState" id="actionStateLabel"></label>
         <input id="actionState" list="actionStateList" autocomplete="off" />
         <datalist id="actionStateList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="servingSurface">Serving Surface:</label>
+        <label for="servingSurface" id="servingSurfaceLabel"></label>
         <input id="servingSurface" list="servingSurfaceList" autocomplete="off" />
         <datalist id="servingSurfaceList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="dynamicEffect">Dynamic Effect:</label>
+        <label for="dynamicEffect" id="dynamicEffectLabel"></label>
         <input id="dynamicEffect" list="dynamicEffectList" autocomplete="off" />
         <datalist id="dynamicEffectList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="cameraAngle">Camera Angle:</label>
+        <label for="cameraAngle" id="cameraAngleLabel"></label>
         <input id="cameraAngle" list="cameraAngleList" autocomplete="off" />
         <datalist id="cameraAngleList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="propElements">Prop Elements:</label>
+        <label for="propElements" id="propElementsLabel"></label>
         <input id="propElements" list="propElementsList" autocomplete="off" />
         <datalist id="propElementsList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="lightingType">Lighting Type:</label>
+        <label for="lightingType" id="lightingTypeLabel"></label>
         <input id="lightingType" list="lightingTypeList" autocomplete="off" />
         <datalist id="lightingTypeList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="backdropType">Backdrop Type:</label>
+        <label for="backdropType" id="backdropTypeLabel"></label>
         <input id="backdropType" list="backdropTypeList" autocomplete="off" />
         <datalist id="backdropTypeList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="moodAtmosphere">Mood/Atmosphere Style:</label>
+        <label for="moodAtmosphere" id="moodAtmosphereLabel"></label>
         <input id="moodAtmosphere" list="moodAtmosphereList" autocomplete="off" />
         <datalist id="moodAtmosphereList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="colorPalette">Color Palette:</label>
+        <label for="colorPalette" id="colorPaletteLabel"></label>
         <input id="colorPalette" list="colorPaletteList" autocomplete="off" />
         <datalist id="colorPaletteList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="compositionStyle">Composition Style:</label>
+        <label for="compositionStyle" id="compositionStyleLabel"></label>
         <input id="compositionStyle" list="compositionStyleList" autocomplete="off" />
         <datalist id="compositionStyleList"></datalist>
       </div>
-
       <div class="slot-group">
-        <label for="emotionKeywords">Emotion/Mood Keywords:</label>
+        <label for="emotionKeywords" id="emotionKeywordsLabel"></label>
         <input id="emotionKeywords" list="emotionKeywordsList" autocomplete="off" />
         <datalist id="emotionKeywordsList"></datalist>
       </div>
-
       <div style="margin-top:0.6em;">
-        <button type="submit">Generate Prompt</button>
-        <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;color:#fff;border:none;padding:.5em .8em;border-radius:6px;">Random Prompt</button>
+        <button type="submit" id="generateBtn"></button>
+        <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;color:#fff;border:none;padding:.5em .8em;border-radius:6px;"></button>
       </div>
     </form>
 
-    <h2>Prompt Output</h2>
+    <h2 id="promptOutputTitle"></h2>
     <textarea id="promptOutput" rows="6"></textarea>
-    <div style="font-size:0.95em;color:#888;margin-bottom:0.8em;">* Prompt dapat diedit manual, atau klik Generate/Random untuk overwrite.</div>
+    <div id="promptEditHint" style="font-size:0.95em;color:#888;margin-bottom:0.8em;"></div>
 
-    <!-- Explicit toggle buttons to ensure UI always responds -->
     <div style="display:flex;gap:.5rem;margin-bottom:.5rem;">
-      <button id="toggleSlotGuideBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;">Toggle Slot Guide</button>
-      <button id="toggleWordBanksBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;">Toggle Word Banks</button>
+      <button id="toggleSlotGuideBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;"></button>
+      <button id="toggleWordBanksBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;"></button>
     </div>
 
-    <!-- Details sections (app.js will fill the inner content) -->
     <details id="slotGuideDetails" aria-labelledby="toggleSlotGuideBtn">
-      <summary style="cursor:pointer;font-weight:600;">Slot Guide</summary>
+      <summary id="slotGuideSummary" style="cursor:pointer;font-weight:600;"></summary>
       <div id="slotGuide" style="padding:.6em 0;"></div>
     </details>
-
     <details id="wordBanksDetails" aria-labelledby="toggleWordBanksBtn">
-      <summary style="cursor:pointer;font-weight:600;">Word Banks</summary>
+      <summary id="wordBanksSummary" style="cursor:pointer;font-weight:600;"></summary>
       <div id="wordBanks" style="padding:.6em 0;"></div>
     </details>
-
   </div>
 
   <script src="wordbank.js"></script>
   <script src="app.js"></script>
-
-  <!-- Small helper script to ensure toggle buttons always work even if CSS blocks summary interactions -->
   <script>
+    // (unchanged helper script)
     (function () {
       const slotDetails = document.getElementById('slotGuideDetails');
       const wordDetails = document.getElementById('wordBanksDetails');
       document.getElementById('toggleSlotGuideBtn').addEventListener('click', function () {
-        // toggle open state
         slotDetails.open = !slotDetails.open;
-        // focus for accessibility
         if (slotDetails.open) slotDetails.querySelector('summary').focus();
       });
       document.getElementById('toggleWordBanksBtn').addEventListener('click', function () {
         wordDetails.open = !wordDetails.open;
         if (wordDetails.open) wordDetails.querySelector('summary').focus();
       });
-
-      // Also make summary clickable via keyboard if CSS removed pointer events
       document.querySelectorAll('details summary').forEach(summary => {
         summary.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
