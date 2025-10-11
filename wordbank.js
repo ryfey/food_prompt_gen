@@ -157,6 +157,10 @@ window.wordBanks = {
       Minuman: [ "sedotan", "irisan jeruk", "daun mint", "es batu", "payung kecil", "tatakan gelas" ],
       default: [ "herbal", "alat makan", "serbet", "irisan lemon" ]
     },
+    cameraAngle: [
+      "top-down", "45° angle", "extreme close-up", "eye-level", "side profile", "low angle", "overhead", "macro", "diagonal", "dynamic tilt",
+      "bird-eye", "worm-eye", "three-quarters", "skewed angle", "symmetric angle", "off-center", "vertical", "high angle", "low angle", "frontal"
+    ],
     lightingType: [
       "pencahayaan alami", "backlight dramatis", "low-key gelap", "cahaya studio terang", "cahaya lilin hangat", "ambien sejuk", "pencahayaan samping lembut", "spotlight", "bayangan bermain", "filter warna",
       "pencahayaan pagi", "cahaya senja", "cahaya redup", "cahaya jendela", "cahaya lampu gantung", "pencahayaan softbox", "cahaya neon", "cahaya lampu dapur", "cahaya siluet", "cahaya reflektif"
