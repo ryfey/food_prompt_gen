@@ -2,55 +2,40 @@
 
 const LANGS = ["ID", "EN"];
 let currentLang = "ID";
-
-// Used slots
 const slots = [
   "mainSubject", "actionState", "servingSurface", "dynamicEffect",
   "cameraAngle", "propElements", "lightingType", "backdropType",
   "moodAtmosphere", "colorPalette", "compositionStyle", "emotionKeywords"
 ];
-
 const mainSubjectCats = {
   EN: ["All", "Cake", "Vegetable", "Side Dish", "Rice/Protein", "Drink"],
   ID: ["All", "Kue", "Sayur", "Lauk", "Nasi/Protein", "Minuman"]
 };
 
 function updateUIText() {
-  const txt = window.uiText[currentLang];
-  document.getElementById("appTitle").textContent = txt.title;
-  document.getElementById("labelMainSubject").textContent = txt.mainSubject;
-  document.getElementById("labelActionState").textContent = txt.actionState;
-  document.getElementById("labelServingSurface").textContent = txt.servingSurface;
-  document.getElementById("labelDynamicEffect").textContent = txt.dynamicEffect;
-  document.getElementById("labelCameraAngle").textContent = txt.cameraAngle;
-  document.getElementById("labelPropElements").textContent = txt.propElements;
-  document.getElementById("labelLightingType").textContent = txt.lightingType;
-  document.getElementById("labelBackdropType").textContent = txt.backdropType;
-  document.getElementById("labelMoodAtmosphere").textContent = txt.moodAtmosphere;
-  document.getElementById("labelColorPalette").textContent = txt.colorPalette;
-  document.getElementById("labelCompositionStyle").textContent = txt.compositionStyle;
-  document.getElementById("labelEmotionKeywords").textContent = txt.emotionKeywords;
-  document.getElementById("btnGenerate").textContent = txt.generate;
-  document.getElementById("randomPromptBtn").textContent = txt.random;
-  document.getElementById("outputTitle").textContent = txt.output;
-  document.getElementById("outputNote").textContent = txt.note;
-
-  // Update category buttons
-  const btns = document.querySelectorAll(".foodcat-btn");
-  btns.forEach((btn, i) => {
+  const txt = window.uiText && window.uiText[currentLang] ? window.uiText[currentLang] : {};
+  [
+    ["appTitle", "title"], ["labelMainSubject", "mainSubject"], ["labelActionState", "actionState"],
+    ["labelServingSurface", "servingSurface"], ["labelDynamicEffect", "dynamicEffect"], ["labelCameraAngle", "cameraAngle"],
+    ["labelPropElements", "propElements"], ["labelLightingType", "lightingType"], ["labelBackdropType", "backdropType"],
+    ["labelMoodAtmosphere", "moodAtmosphere"], ["labelColorPalette", "colorPalette"],
+    ["labelCompositionStyle", "compositionStyle"], ["labelEmotionKeywords", "emotionKeywords"],
+    ["btnGenerate", "generate"], ["randomPromptBtn", "random"], ["outputTitle", "output"], ["outputNote", "note"]
+  ].forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el && txt[key]) el.textContent = txt[key];
+  });
+  document.querySelectorAll(".foodcat-btn").forEach((btn, i) => {
     const cat = btn.getAttribute("data-cat");
-    btn.textContent = txt.categories[cat] || cat;
+    btn.textContent = txt.categories && txt.categories[cat] ? txt.categories[cat] : cat;
   });
 }
 
 function fillDatalists() {
-  // global slots only (not per category)
-  if (!window.wordBanks[currentLang]) return;
+  if (!window.wordBanks || !window.wordBanks[currentLang]) return;
   slots.forEach(slot => {
-    if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot)) return;
-    if (slot === "mainSubject") return;
-    const listId = slot + "List";
-    const datalist = document.getElementById(listId);
+    if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot) || slot === "mainSubject") return;
+    const datalist = document.getElementById(slot + "List");
     if (!datalist) return;
     const arr = window.wordBanks[currentLang][slot] || [];
     datalist.innerHTML = "";
@@ -64,11 +49,9 @@ function fillDatalists() {
 
 function fillSlotDatalist(slot, category) {
   const datalist = document.getElementById(slot + "List");
-  let arr;
-  if (window.wordBanks[currentLang][slot]) {
+  let arr = [];
+  if (window.wordBanks && window.wordBanks[currentLang] && window.wordBanks[currentLang][slot]) {
     arr = window.wordBanks[currentLang][slot][category] || window.wordBanks[currentLang][slot].default || [];
-  } else {
-    arr = [];
   }
   datalist.innerHTML = "";
   arr.forEach(opt => {
@@ -79,13 +62,16 @@ function fillSlotDatalist(slot, category) {
 }
 
 function fillMainSubjectDatalist(category) {
-  let arr;
-  if (category === "All") {
-    arr = window.wordBanks[currentLang].mainSubject;
-  } else {
-    arr = window.foodCategories[currentLang][category] || [];
+  let arr = [];
+  if (window.wordBanks && window.wordBanks[currentLang]) {
+    if (category === "All") {
+      arr = window.wordBanks[currentLang].mainSubject || [];
+    } else if (window.foodCategories && window.foodCategories[currentLang]) {
+      arr = window.foodCategories[currentLang][category] || [];
+    }
   }
   const datalist = document.getElementById("mainSubjectList");
+  if (!datalist) return;
   datalist.innerHTML = "";
   arr.forEach(opt => {
     const el = document.createElement("option");
@@ -95,15 +81,12 @@ function fillMainSubjectDatalist(category) {
 }
 
 function updateCategorySlots(cat) {
-  fillSlotDatalist("actionState", cat);
-  fillSlotDatalist("servingSurface", cat);
-  fillSlotDatalist("dynamicEffect", cat);
-  fillSlotDatalist("propElements", cat);
+  ["actionState", "servingSurface", "dynamicEffect", "propElements"].forEach(slot => fillSlotDatalist(slot, cat));
 }
 
 function renderSlotGuide() {
   const container = document.getElementById("slotGuide");
-  if (!container || !window.slotGuide[currentLang]) return;
+  if (!container || !window.slotGuide || !window.slotGuide[currentLang]) return;
   let html = '<table class="guide-table"><thead><tr><th>Slot</th><th>Guide</th><th>Example</th></tr></thead><tbody>';
   window.slotGuide[currentLang].forEach(s => {
     html += `<tr>
@@ -118,21 +101,20 @@ function renderSlotGuide() {
 
 function renderWordBanks() {
   const container = document.getElementById("wordBanks");
-  if (!container || !window.wordBanks[currentLang]) return;
+  if (!container || !window.wordBanks || !window.wordBanks[currentLang]) return;
   let html = "";
   slots.forEach(slot => {
-    const pretty = window.uiText[currentLang][slot] || slot.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
+    const pretty = window.uiText && window.uiText[currentLang] && window.uiText[currentLang][slot] ? window.uiText[currentLang][slot] : slot.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
     html += `<div class="wb-slot"><h4>${escapeHtml(pretty)}</h4><ul>`;
-    // Per slot, per kategori
-    let arr;
     if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot)) {
-      // List all per category
-      Object.keys(window.wordBanks[currentLang][slot]).forEach(cat => {
-        html += `<li style="font-weight:bold;color:#2e7d32;">[${cat}]</li>`;
-        (window.wordBanks[currentLang][slot][cat] || []).forEach(item => {
-          html += `<li>${escapeHtml(item || "(empty)")}</li>`;
+      if (window.wordBanks[currentLang][slot]) {
+        Object.keys(window.wordBanks[currentLang][slot]).forEach(cat => {
+          html += `<li style="font-weight:bold;color:#2e7d32;">[${cat}]</li>`;
+          (window.wordBanks[currentLang][slot][cat] || []).forEach(item => {
+            html += `<li>${escapeHtml(item || "(empty)")}</li>`;
+          });
         });
-      });
+      }
     } else {
       (window.wordBanks[currentLang][slot] || []).forEach(item => {
         html += `<li>${escapeHtml(item || "(empty)")}</li>`;
@@ -148,8 +130,6 @@ function generatePrompt(values) {
   slots.forEach(s => {
     vs[s] = (values[s] || "").trim();
   });
-
-  // Prompt skeleton EN/ID
   if (currentLang === "EN") {
     return (
       `${vs.mainSubject} ${vs.actionState} on ${vs.servingSurface}` +
@@ -178,17 +158,17 @@ function generatePrompt(values) {
 }
 
 function randomPrompt() {
-  if (!window.wordBanks[currentLang]) return;
+  if (!window.wordBanks || !window.wordBanks[currentLang]) return;
   const vals = {};
-  // Find active category
   let cat = document.querySelector(".foodcat-btn.active").getAttribute("data-cat");
   slots.forEach(slot => {
-    let arr;
+    let arr = [];
     if (slot === "mainSubject") {
-      arr = [];
       document.querySelectorAll('#mainSubjectList option').forEach(opt => arr.push(opt.value));
     } else if (["actionState", "servingSurface", "dynamicEffect", "propElements"].includes(slot)) {
-      arr = window.wordBanks[currentLang][slot][cat] || window.wordBanks[currentLang][slot].default || [];
+      if (window.wordBanks[currentLang][slot]) {
+        arr = window.wordBanks[currentLang][slot][cat] || window.wordBanks[currentLang][slot].default || [];
+      }
     } else {
       arr = window.wordBanks[currentLang][slot] && window.wordBanks[currentLang][slot].length ? window.wordBanks[currentLang][slot] : [""];
     }
@@ -204,10 +184,7 @@ function randomPrompt() {
 
 function escapeHtml(s) {
   if (s == null) return "";
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function switchLang(lang) {
