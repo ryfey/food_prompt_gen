@@ -91,7 +91,10 @@ window.wordBanks = {
       Drink: [ "straw", "citrus slice", "mint sprig", "ice cubes", "umbrella", "coaster" ],
       default: [ "herbs", "cutlery", "napkin", "lemon wedge" ]
     },
-    // slots lain tetap global (gunakan array seperti sebelumnya)
+    cameraAngle: [
+      "top-down", "45° angle", "extreme close-up", "eye-level", "side profile", "low angle", "overhead", "macro", "diagonal", "dynamic tilt",
+      "bird-eye", "worm-eye", "three-quarters", "skewed angle", "symmetric angle", "off-center", "vertical", "high angle", "low angle", "frontal"
+    ],
     lightingType: [
       "natural light", "dramatic backlight", "moody low-key", "bright studio", "warm candlelight", "cool ambient", "soft sidelight", "spotlight", "shadow play", "color filter",
       "morning light", "evening light", "dimmed light", "window light", "hanging lamp", "softbox light", "neon light", "kitchen lamp", "silhouette light", "reflective light"
