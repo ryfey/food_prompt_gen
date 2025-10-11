@@ -8,115 +8,141 @@
 </head>
 <body>
   <div class="container">
-    <!-- Language Selector -->
-    <div style="text-align:right;margin-bottom:0.5em;">
-      <label for="langSelect" id="langSelectLabel">Bahasa:</label>
-      <select id="langSelect">
-        <option value="id">Indonesia</option>
-        <option value="en">English</option>
-      </select>
+    <h1 id="appTitle">Analyze Food Photo & Prompt Generator</h1>
+
+    <!-- Language & Theme Switcher -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <div id="langSwitcher">
+        <button type="button" class="lang-btn active" data-lang="ID">ID</button>
+        <button type="button" class="lang-btn" data-lang="EN">EN</button>
+      </div>
+      <div id="themeSwitcher">
+        <button type="button" class="theme-btn active" data-theme="light">Light</button>
+        <button type="button" class="theme-btn" data-theme="dark">Dark</button>
+        <button type="button" class="theme-btn" data-theme="soft">Soft Dark</button>
+      </div>
     </div>
 
-    <h1 id="appTitle"></h1>
-
     <form id="promptForm">
+
       <div class="slot-group">
-        <label for="mainSubject" id="mainSubjectLabel"></label>
+        <label id="labelMainSubject">Main Subject:</label>
+        <div id="foodCatBtns" style="margin-bottom:6px;display:flex;gap:6px;flex-wrap:wrap;">
+          <button type="button" class="foodcat-btn active" data-cat="All">Semua</button>
+          <button type="button" class="foodcat-btn" data-cat="Kue">Kue</button>
+          <button type="button" class="foodcat-btn" data-cat="Sayur">Sayur</button>
+          <button type="button" class="foodcat-btn" data-cat="Lauk">Lauk</button>
+          <button type="button" class="foodcat-btn" data-cat="Nasi/Protein">Nasi/Protein</button>
+          <button type="button" class="foodcat-btn" data-cat="Minuman">Minuman</button>
+        </div>
         <input id="mainSubject" list="mainSubjectList" autocomplete="off" />
         <datalist id="mainSubjectList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="actionState" id="actionStateLabel"></label>
+        <label id="labelActionState" for="actionState">Action/State:</label>
         <input id="actionState" list="actionStateList" autocomplete="off" />
         <datalist id="actionStateList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="servingSurface" id="servingSurfaceLabel"></label>
+        <label id="labelServingSurface" for="servingSurface">Serving Surface:</label>
         <input id="servingSurface" list="servingSurfaceList" autocomplete="off" />
         <datalist id="servingSurfaceList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="dynamicEffect" id="dynamicEffectLabel"></label>
+        <label id="labelDynamicEffect" for="dynamicEffect">Dynamic Effect:</label>
         <input id="dynamicEffect" list="dynamicEffectList" autocomplete="off" />
         <datalist id="dynamicEffectList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="cameraAngle" id="cameraAngleLabel"></label>
+        <label id="labelCameraAngle" for="cameraAngle">Camera Angle:</label>
         <input id="cameraAngle" list="cameraAngleList" autocomplete="off" />
         <datalist id="cameraAngleList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="propElements" id="propElementsLabel"></label>
+        <label id="labelPropElements" for="propElements">Prop Elements:</label>
         <input id="propElements" list="propElementsList" autocomplete="off" />
         <datalist id="propElementsList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="lightingType" id="lightingTypeLabel"></label>
+        <label id="labelLightingType" for="lightingType">Lighting Type:</label>
         <input id="lightingType" list="lightingTypeList" autocomplete="off" />
         <datalist id="lightingTypeList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="backdropType" id="backdropTypeLabel"></label>
+        <label id="labelBackdropType" for="backdropType">Backdrop Type:</label>
         <input id="backdropType" list="backdropTypeList" autocomplete="off" />
         <datalist id="backdropTypeList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="moodAtmosphere" id="moodAtmosphereLabel"></label>
+        <label id="labelMoodAtmosphere" for="moodAtmosphere">Mood/Atmosphere Style:</label>
         <input id="moodAtmosphere" list="moodAtmosphereList" autocomplete="off" />
         <datalist id="moodAtmosphereList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="colorPalette" id="colorPaletteLabel"></label>
+        <label id="labelColorPalette" for="colorPalette">Color Palette:</label>
         <input id="colorPalette" list="colorPaletteList" autocomplete="off" />
         <datalist id="colorPaletteList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="compositionStyle" id="compositionStyleLabel"></label>
+        <label id="labelCompositionStyle" for="compositionStyle">Composition Style:</label>
         <input id="compositionStyle" list="compositionStyleList" autocomplete="off" />
         <datalist id="compositionStyleList"></datalist>
       </div>
+
       <div class="slot-group">
-        <label for="emotionKeywords" id="emotionKeywordsLabel"></label>
+        <label id="labelEmotionKeywords" for="emotionKeywords">Emotion/Mood Keywords:</label>
         <input id="emotionKeywords" list="emotionKeywordsList" autocomplete="off" />
         <datalist id="emotionKeywordsList"></datalist>
       </div>
+
       <div style="margin-top:0.6em;">
-        <button type="submit" id="generateBtn"></button>
-        <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;color:#fff;border:none;padding:.5em .8em;border-radius:6px;"></button>
+        <button type="submit" id="btnGenerate">Generate Prompt</button>
+        <button type="button" id="randomPromptBtn" style="margin-left:10px;background:#0077cc;color:#fff;border:none;padding:.5em .8em;border-radius:6px;">Random Prompt</button>
       </div>
     </form>
 
-    <h2 id="promptOutputTitle"></h2>
+    <h2 id="outputTitle">Prompt Output</h2>
     <textarea id="promptOutput" rows="6"></textarea>
-    <div id="promptEditHint" style="font-size:0.95em;color:#888;margin-bottom:0.8em;"></div>
-
-    <div style="display:flex;gap:.5rem;margin-bottom:.5rem;">
-      <button id="toggleSlotGuideBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;"></button>
-      <button id="toggleWordBanksBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;"></button>
+    <div id="outputNote" style="font-size:0.95em;color:#888;margin-bottom:0.8em;">
+      * Prompt dapat diedit manual, atau klik Generate/Random untuk overwrite.
     </div>
 
+    <div style="display:flex;gap:.5rem;margin-bottom:.5rem;">
+      <button id="toggleSlotGuideBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;">Toggle Slot Guide</button>
+      <button id="toggleWordBanksBtn" type="button" style="padding:.4em .7em;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer;">Toggle Word Banks</button>
+    </div>
     <details id="slotGuideDetails" aria-labelledby="toggleSlotGuideBtn">
-      <summary id="slotGuideSummary" style="cursor:pointer;font-weight:600;"></summary>
+      <summary style="cursor:pointer;font-weight:600;">Slot Guide</summary>
       <div id="slotGuide" style="padding:.6em 0;"></div>
     </details>
     <details id="wordBanksDetails" aria-labelledby="toggleWordBanksBtn">
-      <summary id="wordBanksSummary" style="cursor:pointer;font-weight:600;"></summary>
+      <summary style="cursor:pointer;font-weight:600;">Word Banks</summary>
       <div id="wordBanks" style="padding:.6em 0;"></div>
     </details>
   </div>
-
   <script src="wordbank.js"></script>
   <script src="app.js"></script>
   <script>
-    // (unchanged helper script)
-    (function () {
+    // details toggle script
+    document.addEventListener("DOMContentLoaded", function () {
+      // Toggle details for Slot Guide
       const slotDetails = document.getElementById('slotGuideDetails');
       const wordDetails = document.getElementById('wordBanksDetails');
-      document.getElementById('toggleSlotGuideBtn').addEventListener('click', function () {
+      document.getElementById('toggleSlotGuideBtn').addEventListener('click', function (e) {
         slotDetails.open = !slotDetails.open;
         if (slotDetails.open) slotDetails.querySelector('summary').focus();
       });
-      document.getElementById('toggleWordBanksBtn').addEventListener('click', function () {
+      document.getElementById('toggleWordBanksBtn').addEventListener('click', function (e) {
         wordDetails.open = !wordDetails.open;
         if (wordDetails.open) wordDetails.querySelector('summary').focus();
       });
@@ -129,7 +155,7 @@
           }
         });
       });
-    })();
+    });
   </script>
 </body>
 </html>
