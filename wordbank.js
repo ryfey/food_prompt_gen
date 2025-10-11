@@ -49,24 +49,24 @@ window.uiText = {
 
 window.foodCategories = {
   EN: {
-    Cake: [
+    Kue: [
       "chocolate lava cake", "fruit tart", "brownies", "cheesecake", "carrot cake", "apple pie", "cupcake", "red velvet cake", "lemon meringue pie", "banana bread",
       "tiramisu", "pavlova", "eclair", "profiteroles", "baked donuts", "cream puff", "coconut cake", "pumpkin pie", "macarons", "layered sponge cake", "shortbread"
     ],
-    Vegetable: [
+    Sayur: [
       "grilled vegetable platter", "vegetable stir fry", "ratatouille", "salad bowl", "roasted carrots", "sauteed spinach", "stuffed bell peppers", "veggie soup", "pickled vegetables", "cucumber salad",
       "coleslaw", "steamed broccoli", "vegetable curry", "mushroom stew", "baked eggplant", "corn fritters", "herb salad", "avocado salad", "vegetable tempura", "zucchini noodles"
     ],
-    "Side Dish": [
+    Lauk: [
       "fried chicken", "beef steak", "roast duck", "grilled fish", "crispy tofu", "shrimp skewers", "lamb chops", "meatballs", "chicken wings", "fish fillet",
       "egg rolls", "pork belly", "spicy ribs", "roast lamb", "turkey breast", "smoked salmon", "barbecue ribs", "garlic prawns", "chicken satay", "fried tempeh"
     ],
-    "Rice/Protein": [
+    "Nasi/Protein": [
       "sushi platter", "fried rice", "bibimbap", "rice bowl", "steamed rice", "chicken rice", "paella", "jambalaya", "pilaf", "nasi goreng",
       "risotto", "biryani", "curry rice", "rice porridge", "rice salad", "rice noodles", "quinoa bowl", "poke bowl", "donburi", "chicken and rice",
       "pizza", "burger", "cheeseburger", "chicken burger", "pizza pepperoni", "pizza margherita", "pizza supreme", "double cheese burger", "beef burger", "chicken sandwich"
     ],
-    Drink: [
+    Minuman: [
       "iced coffee", "bubble tea", "smoothie bowl", "fruit juice", "lemonade", "cold brew", "milkshake", "hot chocolate", "matcha latte", "herbal tea",
       "espresso", "mojito", "sangria", "iced tea", "ginger ale", "detox water", "coconut water", "milk tea", "soda float", "orange juice"
     ]
